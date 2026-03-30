@@ -76,32 +76,49 @@
         .btn-cta { background: var(--accent-color); color: #000; padding: 18px 45px; text-decoration: none; font-weight: 900; border-radius: 5px; display: inline-block; transition: 0.3s; }
         .btn-cta:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(245, 166, 35, 0.3); }
 
-        /* --- RÉALISATIONS (Corrigé pour 1 seule ligne) --- */
+        /* --- RÉALISATIONS (7 Images) --- */
         .portfolio-section { padding: 100px 0; text-align: center; }
         .section-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; text-transform: uppercase; margin-bottom: 60px; }
         .section-title span { color: var(--accent-color); }
 
         .portfolio-grid {
             display: grid;
-            /* Force 4 colonnes sur une seule ligne sur Desktop */
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 15px;
+            grid-template-columns: repeat(4, 1fr); /* 4 colonnes max */
+            gap: 20px;
             justify-content: center;
         }
+
         .project-card {
             background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
             aspect-ratio: 1/1;
         }
+
         .project-card img {
             width: 100%; height: 100%; object-fit: cover;
             filter: grayscale(1); transition: 0.6s cubic-bezier(0.33, 1, 0.68, 1);
         }
         .project-card:hover img { filter: grayscale(0); transform: scale(1.1); }
 
+        /* Style spécifique pour centrer la dernière ligne quand il y a 7 éléments */
+        @media (min-width: 993px) {
+            .project-card:nth-child(n+5) {
+                grid-column: span 1;
+            }
+            .portfolio-grid {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .project-card {
+                width: calc(25% - 20px); /* 4 par ligne moins le gap */
+                margin-bottom: 20px;
+            }
+        }
+
         /* --- TESTIMONIALS --- */
-        .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
         .testi-card { background: rgba(255,255,255,0.03); padding: 40px; border-radius: 20px; text-align: left; border: 1px solid rgba(255,255,255,0.05); }
 
         /* --- FORMULAIRE --- */
@@ -117,13 +134,11 @@
         @media (max-width: 992px) {
             .hero { flex-direction: column; text-align: center; }
             .hero-image { width: 100%; height: 350px; }
-            /* Sur tablettes, on peut passer à 2x2 pour garder de la visibilité */
-            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+            .project-card { width: calc(50% - 20px) !important; } /* 2 par ligne sur tablette */
         }
         @media (max-width: 600px) {
-            /* Sur mobile, on empile pour la lisibilité */
-            .portfolio-grid { grid-template-columns: 1fr; }
-            nav ul { display: none; } /* Simplification pour l'exemple */
+            .project-card { width: 100% !important; } /* 1 par ligne sur mobile */
+            nav ul { display: none; }
         }
     </style>
 </head>
@@ -160,6 +175,9 @@
                 <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/FZ-Mchirah-300x300.jpg" alt="FZ Mchirah"></div>
                 <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Ilhamagination-1-300x300.jpg" alt="Ilhamagination"></div>
                 <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Salon-Rosell-300x300.jpg" alt="Salon Rosell"></div>
+                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2026/03/Women-Entrepreneurs.jpg" alt="Women Entrepreneurs"></div>
+                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2026/03/Le-Mondefeminin.jpg" alt="Le Mondefeminin"></div>
+                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2026/03/ALMOUKAWILA.jpg" alt="Almoukawila"></div>
             </div>
         </section>
 
@@ -170,14 +188,14 @@
                     <p>"Le résultat est impeccable. Aziz m’a conseillé et orienté dans ce domaine jusque-là inconnu. Ma page web est à mon image."</p>
                     <div class="testi-author">
                         <h4>Fatima Ezzohra Mchirah</h4>
-                        <a href="https://fzmchirah.com/" target="_blank" style="color:var(--accent-color); font-size:0.8rem;">fzmchirah.com</a>
+                        <a href="https://fzmchirah.com/" target="_blank" style="color:var(--accent-color); font-size:0.8rem; text-decoration:none;">fzmchirah.com</a>
                     </div>
                 </div>
                 <div class="testi-card">
                     <p>"Un partenaire de confiance, à l’écoute et passionné. Aziz sait capter l’essence d’un projet et le traduire avec goût."</p>
                     <div class="testi-author">
                         <h4>Ilham Ait Omar</h4>
-                        <a href="https://www.ilhamagination.com" target="_blank" style="color:var(--accent-color); font-size:0.8rem;">ilhamagination.com</a>
+                        <a href="https://www.ilhamagination.com" target="_blank" style="color:var(--accent-color); font-size:0.8rem; text-decoration:none;">ilhamagination.com</a>
                     </div>
                 </div>
             </div>
@@ -200,13 +218,11 @@
     </footer>
 
     <script>
-        // Animation au défilement (Scroll Reveal)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.reveal').forEach(section => observer.observe(section));
     </script>
 </body>
