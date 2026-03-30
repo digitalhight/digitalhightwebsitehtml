@@ -18,7 +18,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color); /* Correction : Fond noir total */
+            background-color: var(--bg-color);
             color: var(--text-white);
             line-height: 1.6;
         }
@@ -44,12 +44,7 @@
             align-items: center;
         }
 
-        .logo { 
-            font-weight: 900; 
-            font-size: 1.4rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-        }
+        .logo { font-weight: 900; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 1px; }
         .logo span { color: var(--accent-color); }
 
         nav ul { display: flex; list-style: none; gap: 30px; }
@@ -77,20 +72,13 @@
             text-transform: uppercase;
         }
         .hero-text h1 span { color: var(--accent-color); }
-        
-        .hero-text p { 
-            color: var(--text-gray); 
-            max-width: 500px; 
-            margin-bottom: 40px; 
-            font-size: 1.1rem;
-        }
+        .hero-text p { color: var(--text-gray); max-width: 500px; margin-bottom: 40px; font-size: 1.1rem; }
 
         .hero-image {
             height: 500px;
             background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80') center/cover;
             filter: grayscale(1);
             border-radius: 20px;
-            position: relative;
         }
 
         .btn-cta {
@@ -101,84 +89,96 @@
             font-weight: 900;
             border-radius: 4px;
             display: inline-block;
-            transition: transform 0.2s;
         }
-        .btn-cta:hover { transform: scale(1.05); }
 
-        /* --- SECTIONS COMMUNES --- */
-        section { padding: 120px 0; }
+        /* --- SECTIONS --- */
+        section { padding: 80px 0; }
         .section-title {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
             text-transform: uppercase;
             margin-bottom: 60px;
-            text-align: left;
+            border-left: 8px solid var(--accent-color);
+            padding-left: 20px;
         }
         .section-title span { color: var(--accent-color); }
 
-        /* --- ABOUT --- */
-        .about { background-color: #000; }
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
-        .about-card h3 { color: var(--accent-color); margin-bottom: 20px; text-transform: uppercase; }
-
-        /* --- REALISATIONS --- */
+        /* --- RÉALISATIONS (Portfolio) --- */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
-        .project-item {
-            height: 400px;
-            background-color: var(--card-bg);
+        .project-card {
+            background: var(--card-bg);
             border-radius: 12px;
             overflow: hidden;
-            filter: grayscale(1);
-            transition: 0.5s ease;
+            aspect-ratio: 1 / 1;
+            position: relative;
         }
-        .project-item:hover { filter: grayscale(0); transform: translateY(-10px); }
-        .project-item img { width: 100%; height: 100%; object-fit: cover; }
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1);
+            transition: transform 0.5s, filter 0.5s;
+        }
+        .project-card:hover img {
+            filter: grayscale(0);
+            transform: scale(1.1);
+        }
 
         /* --- TESTIMONIALS --- */
-        .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .testi-card {
-            background: #1A1A1A;
-            padding: 40px;
-            border-top: 5px solid var(--accent-color);
+        .testi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
         }
-        .testi-card p { font-style: italic; margin-bottom: 25px; color: #ddd; }
-        .testi-card h4 { color: var(--accent-color); font-size: 0.8rem; letter-spacing: 1px; }
+        .testi-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .testi-card p {
+            font-size: 0.95rem;
+            color: #ccc;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        .testi-author h4 {
+            color: var(--accent-color);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .testi-author a {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
 
-        /* --- CONTACT / GOOGLE FORM --- */
-        .contact { background-color: #000; }
+        /* --- CONTACT / FORM --- */
         .form-wrapper {
             max-width: 850px;
             margin: 0 auto;
-            background: #fdfdfd; /* Fond légèrement blanc pour le form */
-            padding: 20px;
+            background: #fff;
+            padding: 10px;
             border-radius: 15px;
-            overflow: hidden;
-            /* Inversion pour rendre le formulaire Google sombre si besoin */
             filter: invert(90%) hue-rotate(180deg) brightness(1.1); 
         }
-        iframe {
-            width: 100%;
-            height: 800px;
-            border: none;
-        }
+        iframe { width: 100%; height: 800px; border: none; }
 
         footer {
             padding: 60px 0;
             text-align: center;
             border-top: 1px solid #222;
             color: #555;
-            font-size: 0.9rem;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 900px) {
-            .hero, .about-grid, .testi-grid { grid-template-columns: 1fr; }
-            .hero-text h1 { font-size: 3.5rem; }
-            nav ul { display: none; }
+            .hero, .testi-grid, .portfolio-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -192,7 +192,8 @@
                     <li><a href="#">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#projects">Réalisations</a></li>
-                    <li><a href="#contact">S'inscrire</a></li>
+                    <li><a href="#testimonials">Témoignages</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -201,68 +202,59 @@
     <section class="container hero">
         <div class="hero-text">
             <h1>INSPIRING<br><span>CREATING</span><br>DIGITALLY</h1>
-            <p>Nous fusionnons l'Intelligence Artificielle et le design web pour propulser votre entreprise dans une nouvelle dimension numérique.</p>
-            <a href="#contact" class="btn-cta">DÉMARRER LE PROJET →</a>
+            <p>Expertise en IA générative et solutions web haute performance pour entreprises ambitieuses.</p>
+            <a href="#contact" class="btn-cta">LANCEZ VOTRE PROJET →</a>
         </div>
         <div class="hero-image"></div>
     </section>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">Notre <span>Expertise</span></h2>
-            <div class="about-grid">
-                <div class="about-card">
-                    <h3>Intelligence Artificielle</h3>
-                    <p>Automatisation de processus, chatbots intelligents et analyse prédictive pour optimiser vos performances quotidiennes.</p>
-                </div>
-                <div class="about-card">
-                    <h3>Web Haute Performance</h3>
-                    <p>Développement de plateformes robustes, rapides et sécurisées avec une approche centrée sur l'expérience utilisateur (UX).</p>
-                </div>
-            </div>
+    <section id="projects" class="container">
+        <h2 class="section-title">Nos <span>Réalisations</span></h2>
+        <div class="portfolio-grid">
+            <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Autograph-300x300.jpg" alt="Autograph"></div>
+            <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/FZ-Mchirah-300x300.jpg" alt="FZ Mchirah"></div>
+            <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Ilhamagination-1-300x300.jpg" alt="Ilhamagination"></div>
+            <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Salon-Rosell-300x300.jpg" alt="Salon Rosell"></div>
         </div>
     </section>
 
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title">Dernières <span>Créations</span></h2>
-            <div class="portfolio-grid">
-                <div class="project-item"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Work 1"></div>
-                <div class="project-item"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Work 2"></div>
-                <div class="project-item"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=600&q=80" alt="Work 3"></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container">
+    <section id="testimonials" class="container">
+        <h2 class="section-title">Témoignages <span>Clients</span></h2>
         <div class="testi-grid">
+            
             <div class="testi-card">
-                <p>"Une vision futuriste qui a transformé notre manière de communiquer."</p>
-                <h4>DIRECTEUR MARKETING @TECH</h4>
+                <p>
+                    "Je suis extrêmement satisfaite du travail réalisé. Le gérant en personne m’a accompagné tout au long de la promotion de mon roman. Il a été à l’écoute de mes besoins, patient malgré mes différents réajustements. Le résultat est juste impeccable. Le travail final dépasse mes attentes : ma page web est à mon image."
+                </p>
+                <div class="testi-author">
+                    <h4>Fatima Ezzohra Mchirah</h4>
+                    <a href="https://fzmchirah.com/" target="_blank">fzmchirah.com</a>
+                </div>
             </div>
+
             <div class="testi-card">
-                <p>"L'IA intégrée à notre site nous fait gagner 10h de travail par semaine."</p>
-                <h4>FONDATEUR @STARTUP-X</h4>
+                <p>
+                    "Aziz a su comprendre immédiatement l’univers que je voulais créer autour de Ilhamagination. C’est bien plus qu’un créateur de site web : c’est un partenaire de confiance, à l’écoute et toujours disponible. Grâce à lui, j’ai aujourd’hui un site qui reflète parfaitement mon identité et mes valeurs."
+                </p>
+                <div class="testi-author">
+                    <h4>Ilham Ait Omar</h4>
+                    <a href="https://www.ilhamagination.com" target="_blank">ilhamagination.com</a>
+                </div>
             </div>
-            <div class="testi-card">
-                <p>"Design percutant et support technique impeccable."</p>
-                <h4>CEO @DIGITAL-CORP</h4>
-            </div>
+
         </div>
     </section>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title" style="text-align: center;">Rejoignez <span>Le Futur</span></h2>
-            <div class="form-wrapper">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfNZKQ2VMT-yWbO4nYfr2_gkr6EyAu3mxWHwfpGfSYW-5zMJA/viewform?embedded=true">Chargement…</iframe>
-            </div>
+    <section id="contact" class="container">
+        <h2 class="section-title" style="text-align: center; border: none;">Réserver <span>Un Appel</span></h2>
+        <div class="form-wrapper">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfNZKQ2VMT-yWbO4nYfr2_gkr6EyAu3mxWHwfpGfSYW-5zMJA/viewform?embedded=true">Chargement…</iframe>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            &copy; 2026 DIGITALHIGHT | Agence Digitale de Nouvelle Génération.
+            &copy; 2026 DIGITALHIGHT | Conception Digitale Innovante.
         </div>
     </footer>
 
