@@ -16,129 +16,61 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-white);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-white); overflow-x: hidden; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
         /* --- ANIMATIONS --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all var(--transition-speed) cubic-bezier(0.17, 0.55, 0.55, 1);
-        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all var(--transition-speed) ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- NAVIGATION --- */
-        header {
-            background-color: rgba(18, 18, 18, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 2000;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
+        /* --- HEADER --- */
+        header { padding: 25px 0; position: sticky; top: 0; background: rgba(18,18,18,0.9); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid #222; }
         .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-weight: 900; font-size: 1.4rem; text-transform: uppercase; }
         .logo span { color: var(--accent-color); }
         nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { text-decoration: none; color: var(--text-white); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; }
+        nav a { text-decoration: none; color: white; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
+        nav a:hover { color: var(--accent-color); }
 
         /* --- HERO --- */
-        .hero {
-            padding: 100px 0;
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            min-height: 85vh;
-        }
-        .hero-text { flex: 1; animation: fadeInLeft 1s ease-out; }
-        .hero-text h1 { font-size: clamp(3rem, 7vw, 5.5rem); line-height: 0.85; font-weight: 900; margin-bottom: 30px; text-transform: uppercase; }
+        .hero { padding: 100px 0; display: flex; align-items: center; gap: 50px; min-height: 80vh; }
+        .hero-text { flex: 1; }
+        .hero-text h1 { font-size: clamp(3rem, 7vw, 5rem); line-height: 0.9; font-weight: 900; margin-bottom: 30px; }
         .hero-text h1 span { color: var(--accent-color); }
-        .hero-image {
-            flex: 1; height: 500px;
-            background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80') center/cover;
-            filter: grayscale(1) contrast(1.2); border-radius: 30px;
-            animation: fadeInRight 1.2s ease-out;
-        }
-        .btn-cta { background: var(--accent-color); color: #000; padding: 18px 45px; text-decoration: none; font-weight: 900; border-radius: 5px; display: inline-block; transition: 0.3s; }
-        .btn-cta:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(245, 166, 35, 0.3); }
+        .hero-image { flex: 1; height: 500px; background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80') center/cover; border-radius: 20px; filter: grayscale(1); }
 
-        /* --- RÉALISATIONS (7 Images) --- */
-        .portfolio-section { padding: 100px 0; text-align: center; }
-        .section-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; text-transform: uppercase; margin-bottom: 60px; }
-        .section-title span { color: var(--accent-color); }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 colonnes max */
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            aspect-ratio: 1/1;
-        }
-
-        .project-card img {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: grayscale(1); transition: 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-        }
+        /* --- PORTFOLIO (7 images) --- */
+        .portfolio-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .project-card { width: calc(25% - 20px); aspect-ratio: 1/1; border-radius: 15px; overflow: hidden; background: var(--card-bg); }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: 0.5s; }
         .project-card:hover img { filter: grayscale(0); transform: scale(1.1); }
 
-        /* Style spécifique pour centrer la dernière ligne quand il y a 7 éléments */
-        @media (min-width: 993px) {
-            .project-card:nth-child(n+5) {
-                grid-column: span 1;
-            }
-            .portfolio-grid {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .project-card {
-                width: calc(25% - 20px); /* 4 par ligne moins le gap */
-                margin-bottom: 20px;
-            }
-        }
-
         /* --- TESTIMONIALS --- */
-        .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-        .testi-card { background: rgba(255,255,255,0.03); padding: 40px; border-radius: 20px; text-align: left; border: 1px solid rgba(255,255,255,0.05); }
+        .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 50px; }
+        .testi-card { background: var(--card-bg); padding: 40px; border-radius: 20px; border: 1px solid #222; transition: 0.3s; }
+        .testi-card:hover { border-color: var(--accent-color); }
 
-        /* --- FORMULAIRE --- */
-        .form-wrapper { max-width: 900px; margin: 0 auto; background: #fff; padding: 10px; border-radius: 25px; filter: invert(90%) hue-rotate(180deg) brightness(1.1); }
-        iframe { width: 100%; height: 1050px; border: none; }
-
-        footer { padding: 50px 0; text-align: center; border-top: 1px solid #222; color: #555; font-size: 0.8rem; }
-
-        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes fadeInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 992px) {
-            .hero { flex-direction: column; text-align: center; }
-            .hero-image { width: 100%; height: 350px; }
-            .project-card { width: calc(50% - 20px) !important; } /* 2 par ligne sur tablette */
+        /* --- FORMULAIRE CUSTOM --- */
+        .contact-section { padding: 120px 0; background: #0b0b0b; }
+        .custom-form { max-width: 600px; margin: 0 auto; }
+        .input-group { margin-bottom: 25px; text-align: left; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 700; color: var(--accent-color); font-size: 0.8rem; letter-spacing: 1px; }
+        .input-group input, .input-group textarea {
+            width: 100%; padding: 16px; background: #151515; border: 1px solid #333; color: white; border-radius: 8px; font-family: inherit; font-size: 1rem;
         }
-        @media (max-width: 600px) {
-            .project-card { width: 100% !important; } /* 1 par ligne sur mobile */
-            nav ul { display: none; }
+        .input-group input:focus, .input-group textarea:focus { border-color: var(--accent-color); outline: none; background: #1a1a1a; }
+        
+        .btn-send { 
+            width: 100%; background: var(--accent-color); color: #000; padding: 20px; border: none; 
+            font-weight: 900; cursor: pointer; border-radius: 8px; transition: 0.4s; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn-send:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(245, 166, 35, 0.2); background: #ffb433; }
+
+        footer { padding: 60px 0; text-align: center; border-top: 1px solid #222; color: #444; font-size: 0.8rem; letter-spacing: 2px; }
+
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; }
+            .project-card { width: calc(50% - 20px); }
         }
     </style>
 </head>
@@ -147,83 +79,99 @@
     <header>
         <div class="container nav-wrapper">
             <div class="logo">DIGITAL<span>HIGHT</span></div>
-            <nav>
-                <ul>
-                    <li><a href="#">Accueil</a></li>
-                    <li><a href="#projects">Réalisations</a></li>
-                    <li><a href="#testimonials">Témoignages</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <nav><ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#projects">Réalisations</a></li>
+                <li><a href="#testimonials">Avis</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul></nav>
         </div>
     </header>
 
     <main>
         <section class="container hero">
             <div class="hero-text">
-                <h1>INSPIRING<br><span>CREATING</span><br>DIGITALLY</h1>
-                <p>Expertise en IA générative et solutions web haute performance pour entreprises ambitieuses.</p>
-                <a href="#contact" class="btn-cta">DÉMARRER L'EXPÉRIENCE →</a>
+                <h1>DESIGNING<br><span>THE FUTURE</span><br>WITH IA</h1>
+                <p>Agence créative spécialisée dans l'intelligence artificielle et le web design de haute performance.</p>
+                <a href="#contact" class="btn-send" style="display:inline-block; width:auto; padding: 18px 45px; text-decoration: none; text-align:center;">DÉMARRER LE PROJET</a>
             </div>
             <div class="hero-image"></div>
         </section>
 
-        <section id="projects" class="container portfolio-section reveal">
-            <h2 class="section-title">Nos <span>Réalisations</span></h2>
+        <section id="projects" class="container reveal">
+            <h2 style="font-size: 2.5rem; margin-bottom: 60px; text-align: center; text-transform: uppercase;">NOS <span>RÉALISATIONS</span></h2>
             <div class="portfolio-grid">
-                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Autograph-300x300.jpg" alt="Autograph"></div>
-                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/FZ-Mchirah-300x300.jpg" alt="FZ Mchirah"></div>
-                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Ilhamagination-1-300x300.jpg" alt="Ilhamagination"></div>
-                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Salon-Rosell-300x300.jpg" alt="Salon Rosell"></div>
-                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2026/03/Women-Entrepreneurs.jpg" alt="Women Entrepreneurs"></div>
-                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2026/03/Le-Mondefeminin.jpg" alt="Le Mondefeminin"></div>
-                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2026/03/ALMOUKAWILA.jpg" alt="Almoukawila"></div>
+                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Autograph-300x300.jpg"></div>
+                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/FZ-Mchirah-300x300.jpg"></div>
+                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Ilhamagination-1-300x300.jpg"></div>
+                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Salon-Rosell-300x300.jpg"></div>
+                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2026/03/Women-Entrepreneurs.jpg"></div>
+                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2026/03/Le-Mondefeminin.jpg"></div>
+                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2026/03/ALMOUKAWILA.jpg"></div>
             </div>
         </section>
 
         <section id="testimonials" class="container reveal">
-            <h2 class="section-title">Confiance <span>Partagée</span></h2>
+            <h2 style="font-size: 2.5rem; text-align: center; text-transform: uppercase;">CONFIANCE <span>PARTAGÉE</span></h2>
             <div class="testi-grid">
                 <div class="testi-card">
-                    <p>"Le résultat est impeccable. Aziz m’a conseillé et orienté dans ce domaine jusque-là inconnu. Ma page web est à mon image."</p>
-                    <div class="testi-author">
-                        <h4>Fatima Ezzohra Mchirah</h4>
-                        <a href="https://fzmchirah.com/" target="_blank" style="color:var(--accent-color); font-size:0.8rem; text-decoration:none;">fzmchirah.com</a>
-                    </div>
+                    <p>"Aziz m'a accompagné avec patience et créativité. Ma page web est exactement à mon image. Une expertise rare."</p>
+                    <h4 style="color:var(--accent-color); margin-top:15px; text-transform: uppercase;">Fatima Ezzohra Mchirah</h4>
                 </div>
                 <div class="testi-card">
-                    <p>"Un partenaire de confiance, à l’écoute et passionné. Aziz sait capter l’essence d’un projet et le traduire avec goût."</p>
-                    <div class="testi-author">
-                        <h4>Ilham Ait Omar</h4>
-                        <a href="https://www.ilhamagination.com" target="_blank" style="color:var(--accent-color); font-size:0.8rem; text-decoration:none;">ilhamagination.com</a>
-                    </div>
+                    <p>"Un partenaire de confiance qui capte l'essence de votre projet dès le premier échange. Je recommande vivement !"</p>
+                    <h4 style="color:var(--accent-color); margin-top:15px; text-transform: uppercase;">Ilham Ait Omar</h4>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="reveal">
+        <section id="contact" class="contact-section reveal">
             <div class="container">
-                <h2 class="section-title">Réserver <span>Un Appel</span></h2>
-                <div class="form-wrapper">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfNZKQ2VMT-yWbO4nYfr2_gkr6EyAu3mxWHwfpGfSYW-5zMJA/viewform?embedded=true">Chargement…</iframe>
-                </div>
+                <h2 style="text-align: center; margin-bottom: 50px; text-transform: uppercase;">RÉSERVER <span>UN APPEL</span></h2>
+                
+                <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfNZKQ2VMT-yWbO4nYfr2_gkr6EyAu3mxWHwfpGfSYW-5zMJA/formResponse" method="POST" class="custom-form" target="hidden_iframe" id="gform">
+                    <div class="input-group">
+                        <label>NOM COMPLET</label>
+                        <input type="text" name="entry.1050430187" placeholder="Ex: Jean Dupont" required>
+                    </div>
+                    <div class="input-group">
+                        <label>EMAIL</label>
+                        <input type="email" name="entry.269515691" placeholder="votre@email.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label>TÉLÉPHONE</label>
+                        <input type="tel" name="entry.287633032" placeholder="+212 ...">
+                    </div>
+                    <div class="input-group">
+                        <label>VOTRE PROJET</label>
+                        <textarea name="entry.1013819056" rows="4" placeholder="Décrivez vos besoins ici..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-send">ENVOYER LA DEMANDE</button>
+                    
+                    <p id="success-msg" style="display:none; color:var(--accent-color); text-align:center; margin-top:25px; font-weight:bold; font-size:1.1rem;">
+                        ✓ Merci ! Votre demande a été envoyée.
+                    </p>
+                </form>
+                
+                <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            &copy; 2026 DIGITALHIGHT | Design, IA & Performance.
-        </div>
-    </footer>
+    <footer>&copy; 2026 DIGITALHIGHT | STRATÉGIE DIGITALE & IA.</footer>
 
     <script>
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(section => observer.observe(section));
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        const form = document.getElementById('gform');
+        form.onsubmit = function() {
+            document.getElementById('success-msg').style.display = 'block';
+            form.style.opacity = '0.3';
+            form.style.pointerEvents = 'none';
+        };
     </script>
 </body>
 </html>
