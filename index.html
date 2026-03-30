@@ -57,7 +57,7 @@
 
         /* --- HERO SECTION --- */
         .hero {
-            padding: 100px 0;
+            padding: 120px 0;
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
             gap: 40px;
@@ -74,13 +74,6 @@
         .hero-text h1 span { color: var(--accent-color); }
         .hero-text p { color: var(--text-gray); max-width: 500px; margin-bottom: 40px; font-size: 1.1rem; }
 
-        .hero-image {
-            height: 500px;
-            background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80') center/cover;
-            filter: grayscale(1);
-            border-radius: 20px;
-        }
-
         .btn-cta {
             background: var(--accent-color);
             color: #000;
@@ -91,19 +84,29 @@
             display: inline-block;
         }
 
-        /* --- SECTIONS --- */
-        section { padding: 80px 0; }
+        .hero-image {
+            height: 500px;
+            background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80') center/cover;
+            filter: grayscale(1);
+            border-radius: 20px;
+        }
+
+        /* --- SECTIONS (Espacement équilibré) --- */
+        section { 
+            padding: 100px 0; /* Espace avant et après chaque section */
+        }
+
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 900;
             text-transform: uppercase;
-            margin-bottom: 60px;
-            border-left: 8px solid var(--accent-color);
-            padding-left: 20px;
+            margin-bottom: 70px; /* Espace entre le titre et le contenu du bloc */
+            text-align: center;
+            letter-spacing: -1px;
         }
         .section-title span { color: var(--accent-color); }
 
-        /* --- RÉALISATIONS (Portfolio) --- */
+        /* --- RÉALISATIONS --- */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -114,19 +117,15 @@
             border-radius: 12px;
             overflow: hidden;
             aspect-ratio: 1 / 1;
-            position: relative;
         }
         .project-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             filter: grayscale(1);
-            transition: transform 0.5s, filter 0.5s;
+            transition: 0.5s;
         }
-        .project-card:hover img {
-            filter: grayscale(0);
-            transform: scale(1.1);
-        }
+        .project-card:hover img { filter: grayscale(0); transform: scale(1.08); }
 
         /* --- TESTIMONIALS --- */
         .testi-grid {
@@ -136,49 +135,52 @@
         }
         .testi-card {
             background: var(--card-bg);
-            padding: 40px;
-            border-radius: 10px;
+            padding: 50px;
+            border-radius: 15px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            border-bottom: 4px solid transparent;
+            transition: 0.3s;
         }
+        .testi-card:hover { border-bottom: 4px solid var(--accent-color); }
         .testi-card p {
-            font-size: 0.95rem;
-            color: #ccc;
+            font-size: 1rem;
+            color: #ddd;
             margin-bottom: 30px;
-            line-height: 1.8;
+            font-style: italic;
         }
-        .testi-author h4 {
-            color: var(--accent-color);
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-        .testi-author a {
-            color: var(--text-gray);
-            font-size: 0.8rem;
-            text-decoration: none;
-        }
+        .testi-author h4 { color: var(--accent-color); text-transform: uppercase; margin-bottom: 5px; }
+        .testi-author a { color: var(--text-gray); font-size: 0.85rem; text-decoration: none; }
 
-        /* --- CONTACT / FORM --- */
+        /* --- CONTACT / FORM (Ajusté pour éviter scroll) --- */
+        .contact { background-color: #000; }
         .form-wrapper {
             max-width: 850px;
             margin: 0 auto;
             background: #fff;
             padding: 10px;
-            border-radius: 15px;
+            border-radius: 20px;
             filter: invert(90%) hue-rotate(180deg) brightness(1.1); 
+            overflow: hidden;
         }
-        iframe { width: 100%; height: 800px; border: none; }
+        /* Hauteur augmentée pour accommoder le nouveau champ */
+        iframe { width: 100%; height: 1050px; border: none; }
 
         footer {
-            padding: 60px 0;
+            padding: 80px 0;
             text-align: center;
             border-top: 1px solid #222;
-            color: #555;
+            color: #444;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         @media (max-width: 900px) {
             .hero, .testi-grid, .portfolio-grid { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 3.5rem; }
+            iframe { height: 1300px; } /* Encore plus haut sur mobile car les champs s'empilent */
         }
     </style>
 </head>
@@ -190,7 +192,6 @@
             <nav>
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
                     <li><a href="#projects">Réalisations</a></li>
                     <li><a href="#testimonials">Témoignages</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -202,8 +203,8 @@
     <section class="container hero">
         <div class="hero-text">
             <h1>INSPIRING<br><span>CREATING</span><br>DIGITALLY</h1>
-            <p>Expertise en IA générative et solutions web haute performance pour entreprises ambitieuses.</p>
-            <a href="#contact" class="btn-cta">LANCEZ VOTRE PROJET →</a>
+            <p>Agence Web & IA : Nous concevons des écosystèmes numériques intelligents pour propulser votre croissance.</p>
+            <a href="#contact" class="btn-cta">DÉMARRER L'AVENTURE →</a>
         </div>
         <div class="hero-image"></div>
     </section>
@@ -224,7 +225,7 @@
             
             <div class="testi-card">
                 <p>
-                    "Je suis extrêmement satisfaite du travail réalisé. Le gérant en personne m’a accompagné tout au long de la promotion de mon roman. Il a été à l’écoute de mes besoins, patient malgré mes différents réajustements. Le résultat est juste impeccable. Le travail final dépasse mes attentes : ma page web est à mon image."
+                    "Le gérant en personne m’a accompagné tout au long de la promotion de mon roman. Patient malgré mes différents réajustements, le résultat est impeccable. Le travail final dépasse mes attentes."
                 </p>
                 <div class="testi-author">
                     <h4>Fatima Ezzohra Mchirah</h4>
@@ -234,7 +235,7 @@
 
             <div class="testi-card">
                 <p>
-                    "Aziz a su comprendre immédiatement l’univers que je voulais créer autour de Ilhamagination. C’est bien plus qu’un créateur de site web : c’est un partenaire de confiance, à l’écoute et toujours disponible. Grâce à lui, j’ai aujourd’hui un site qui reflète parfaitement mon identité et mes valeurs."
+                    "Aziz a su comprendre immédiatement l’univers que je voulais créer. C’est un partenaire de confiance, à l’écoute et toujours disponible. Mon site reflète parfaitement mes valeurs."
                 </p>
                 <div class="testi-author">
                     <h4>Ilham Ait Omar</h4>
@@ -245,16 +246,18 @@
         </div>
     </section>
 
-    <section id="contact" class="container">
-        <h2 class="section-title" style="text-align: center; border: none;">Réserver <span>Un Appel</span></h2>
-        <div class="form-wrapper">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfNZKQ2VMT-yWbO4nYfr2_gkr6EyAu3mxWHwfpGfSYW-5zMJA/viewform?embedded=true">Chargement…</iframe>
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Réserver <span>Un Appel</span></h2>
+            <div class="form-wrapper">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfNZKQ2VMT-yWbO4nYfr2_gkr6EyAu3mxWHwfpGfSYW-5zMJA/viewform?embedded=true">Chargement…</iframe>
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            &copy; 2026 DIGITALHIGHT | Conception Digitale Innovante.
+            &copy; 2026 DIGITALHIGHT | STRATÉGIE DIGITALE & IA
         </div>
     </footer>
 
