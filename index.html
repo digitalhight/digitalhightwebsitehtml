@@ -32,17 +32,13 @@
             width: 100%;
         }
 
-        /* --- ANIMATIONS DE BASE --- */
+        /* --- ANIMATIONS --- */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
             transition: all var(--transition-speed) cubic-bezier(0.17, 0.55, 0.55, 1);
         }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* --- NAVIGATION --- */
         header {
@@ -54,22 +50,11 @@
             z-index: 2000;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-
         .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-weight: 900; font-size: 1.4rem; text-transform: uppercase; }
         .logo span { color: var(--accent-color); }
-
         nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { 
-            text-decoration: none; color: var(--text-white); 
-            font-size: 0.85rem; font-weight: 700; text-transform: uppercase; 
-            position: relative;
-        }
-        nav a::after {
-            content: ''; width: 0; height: 2px; background: var(--accent-color);
-            position: absolute; bottom: -5px; left: 0; transition: 0.3s;
-        }
-        nav a:hover::after { width: 100%; }
+        nav a { text-decoration: none; color: var(--text-white); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; }
 
         /* --- HERO --- */
         .hero {
@@ -77,64 +62,37 @@
             display: flex;
             align-items: center;
             gap: 50px;
-            min-height: 90vh;
+            min-height: 85vh;
         }
-
         .hero-text { flex: 1; animation: fadeInLeft 1s ease-out; }
-        .hero-text h1 { 
-            font-size: clamp(3rem, 7vw, 5.5rem); 
-            line-height: 0.85; 
-            font-weight: 900; 
-            margin-bottom: 30px; 
-            text-transform: uppercase;
-        }
+        .hero-text h1 { font-size: clamp(3rem, 7vw, 5.5rem); line-height: 0.85; font-weight: 900; margin-bottom: 30px; text-transform: uppercase; }
         .hero-text h1 span { color: var(--accent-color); }
-
         .hero-image {
-            flex: 1;
-            height: 550px;
+            flex: 1; height: 500px;
             background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80') center/cover;
-            filter: grayscale(1) contrast(1.2);
-            border-radius: 30px;
+            filter: grayscale(1) contrast(1.2); border-radius: 30px;
             animation: fadeInRight 1.2s ease-out;
         }
-
-        .btn-cta {
-            background: var(--accent-color);
-            color: #000;
-            padding: 18px 45px;
-            text-decoration: none;
-            font-weight: 900;
-            border-radius: 5px;
-            display: inline-block;
-            transition: 0.3s;
-        }
+        .btn-cta { background: var(--accent-color); color: #000; padding: 18px 45px; text-decoration: none; font-weight: 900; border-radius: 5px; display: inline-block; transition: 0.3s; }
         .btn-cta:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(245, 166, 35, 0.3); }
 
-        /* --- SECTIONS --- */
-        section { padding: 120px 0; text-align: center; }
-        
-        .section-title {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 80px;
-            position: relative;
-        }
+        /* --- RÉALISATIONS (Corrigé pour 1 seule ligne) --- */
+        .portfolio-section { padding: 100px 0; text-align: center; }
+        .section-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; text-transform: uppercase; margin-bottom: 60px; }
         .section-title span { color: var(--accent-color); }
 
-        /* --- RÉALISATIONS --- */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            /* Force 4 colonnes sur une seule ligne sur Desktop */
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px;
+            justify-content: center;
         }
         .project-card {
             background: var(--card-bg);
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
             aspect-ratio: 1/1;
-            cursor: pointer;
         }
         .project-card img {
             width: 100%; height: 100%; object-fit: cover;
@@ -143,57 +101,29 @@
         .project-card:hover img { filter: grayscale(0); transform: scale(1.1); }
 
         /* --- TESTIMONIALS --- */
-        .testi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-        .testi-card {
-            background: rgba(255,255,255,0.03);
-            padding: 50px;
-            border-radius: 25px;
-            text-align: left;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: 0.4s;
-        }
-        .testi-card:hover { background: rgba(255,255,255,0.06); border-color: var(--accent-color); }
+        .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .testi-card { background: rgba(255,255,255,0.03); padding: 40px; border-radius: 20px; text-align: left; border: 1px solid rgba(255,255,255,0.05); }
 
         /* --- FORMULAIRE --- */
-        .form-wrapper {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 15px;
-            border-radius: 30px;
-            filter: invert(90%) hue-rotate(180deg) brightness(1.1); 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-        }
+        .form-wrapper { max-width: 900px; margin: 0 auto; background: #fff; padding: 10px; border-radius: 25px; filter: invert(90%) hue-rotate(180deg) brightness(1.1); }
         iframe { width: 100%; height: 1050px; border: none; }
 
-        /* --- KEYFRAMES --- */
-        @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
+        footer { padding: 50px 0; text-align: center; border-top: 1px solid #222; color: #555; font-size: 0.8rem; }
 
-        /* --- BURGER MOBILE --- */
-        .burger { display: none; cursor: pointer; }
-        .burger div { width: 25px; height: 3px; background: white; margin: 5px; }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
 
+        /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
             .hero { flex-direction: column; text-align: center; }
             .hero-image { width: 100%; height: 350px; }
-            .burger { display: block; }
-            nav ul {
-                position: fixed; right: -100%; top: 80px; height: 100vh;
-                background: var(--bg-color); flex-direction: column; width: 100%;
-                transition: 0.5s; padding-top: 50px;
-            }
-            nav ul.nav-active { right: 0; }
+            /* Sur tablettes, on peut passer à 2x2 pour garder de la visibilité */
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            /* Sur mobile, on empile pour la lisibilité */
+            .portfolio-grid { grid-template-columns: 1fr; }
+            nav ul { display: none; } /* Simplification pour l'exemple */
         }
     </style>
 </head>
@@ -203,16 +133,13 @@
         <div class="container nav-wrapper">
             <div class="logo">DIGITAL<span>HIGHT</span></div>
             <nav>
-                <ul id="nav-links">
+                <ul>
                     <li><a href="#">Accueil</a></li>
                     <li><a href="#projects">Réalisations</a></li>
                     <li><a href="#testimonials">Témoignages</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <div class="burger" id="burger">
-                <div></div><div></div><div></div>
-            </div>
         </div>
     </header>
 
@@ -220,13 +147,13 @@
         <section class="container hero">
             <div class="hero-text">
                 <h1>INSPIRING<br><span>CREATING</span><br>DIGITALLY</h1>
-                <p>Nous fusionnons l'Intelligence Artificielle et le design web pour propulser votre entreprise dans une nouvelle dimension numérique.</p>
+                <p>Expertise en IA générative et solutions web haute performance pour entreprises ambitieuses.</p>
                 <a href="#contact" class="btn-cta">DÉMARRER L'EXPÉRIENCE →</a>
             </div>
             <div class="hero-image"></div>
         </section>
 
-        <section id="projects" class="container reveal">
+        <section id="projects" class="container portfolio-section reveal">
             <h2 class="section-title">Nos <span>Réalisations</span></h2>
             <div class="portfolio-grid">
                 <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Autograph-300x300.jpg" alt="Autograph"></div>
@@ -243,14 +170,14 @@
                     <p>"Le résultat est impeccable. Aziz m’a conseillé et orienté dans ce domaine jusque-là inconnu. Ma page web est à mon image."</p>
                     <div class="testi-author">
                         <h4>Fatima Ezzohra Mchirah</h4>
-                        <a href="https://fzmchirah.com/" target="_blank">fzmchirah.com</a>
+                        <a href="https://fzmchirah.com/" target="_blank" style="color:var(--accent-color); font-size:0.8rem;">fzmchirah.com</a>
                     </div>
                 </div>
                 <div class="testi-card">
                     <p>"Un partenaire de confiance, à l’écoute et passionné. Aziz sait capter l’essence d’un projet et le traduire avec goût."</p>
                     <div class="testi-author">
                         <h4>Ilham Ait Omar</h4>
-                        <a href="https://www.ilhamagination.com" target="_blank">ilhamagination.com</a>
+                        <a href="https://www.ilhamagination.com" target="_blank" style="color:var(--accent-color); font-size:0.8rem;">ilhamagination.com</a>
                     </div>
                 </div>
             </div>
@@ -273,30 +200,14 @@
     </footer>
 
     <script>
-        // Menu Burger
-        const burger = document.getElementById('burger');
-        const nav = document.getElementById('nav-links');
-        burger.addEventListener('click', () => {
-            nav.classList.toggle('nav-active');
-        });
-
         // Animation au défilement (Scroll Reveal)
-        const observerOptions = {
-            threshold: 0.15
-        };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal').forEach(section => {
-            observer.observe(section);
-        });
+        document.querySelectorAll('.reveal').forEach(section => observer.observe(section));
     </script>
-
 </body>
 </html>
