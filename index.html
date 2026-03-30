@@ -21,21 +21,24 @@
             background-color: var(--bg-color);
             color: var(--text-white);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 20px;
+            width: 100%;
         }
 
-        /* --- NAVIGATION --- */
+        /* --- NAVIGATION RESPONSIVE --- */
         header {
-            background-color: rgba(18, 18, 18, 0.95);
-            padding: 25px 0;
+            background-color: rgba(18, 18, 18, 0.98);
+            padding: 20px 0;
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 2000;
+            border-bottom: 1px solid #222;
         }
 
         .nav-wrapper {
@@ -44,10 +47,11 @@
             align-items: center;
         }
 
-        .logo { font-weight: 900; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 1px; }
+        .logo { font-weight: 900; font-size: 1.4rem; text-transform: uppercase; z-index: 3000; }
         .logo span { color: var(--accent-color); }
 
-        nav ul { display: flex; list-style: none; gap: 30px; }
+        /* Menu Desktop */
+        nav ul { display: flex; list-style: none; gap: 30px; align-items: center; }
         nav a { 
             text-decoration: none; color: var(--text-white); 
             font-size: 0.85rem; font-weight: 700; text-transform: uppercase; 
@@ -55,62 +59,77 @@
         }
         nav a:hover { color: var(--accent-color); }
 
+        /* Menu Burger (Mobile) */
+        .burger { display: none; cursor: pointer; z-index: 3000; }
+        .burger div { width: 25px; height: 3px; background-color: white; margin: 5px; transition: 0.3s; }
+
         /* --- HERO SECTION --- */
         .hero {
-            padding: 120px 0;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 40px;
+            padding: 80px 0;
+            display: flex;
+            flex-direction: row;
             align-items: center;
+            justify-content: center;
+            gap: 40px;
+            min-height: 80vh;
         }
 
+        .hero-text { flex: 1; text-align: left; }
         .hero-text h1 { 
-            font-size: clamp(3rem, 8vw, 5.5rem); 
-            line-height: 0.85; 
+            font-size: clamp(2.5rem, 6vw, 5rem); 
+            line-height: 0.9; 
             font-weight: 900; 
-            margin-bottom: 30px; 
+            margin-bottom: 25px; 
             text-transform: uppercase;
         }
         .hero-text h1 span { color: var(--accent-color); }
-        .hero-text p { color: var(--text-gray); max-width: 500px; margin-bottom: 40px; font-size: 1.1rem; }
+        .hero-text p { color: var(--text-gray); max-width: 500px; margin-bottom: 35px; font-size: 1.1rem; }
+
+        .hero-image {
+            flex: 1;
+            height: 450px;
+            background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80') center/cover;
+            filter: grayscale(1);
+            border-radius: 20px;
+            width: 100%;
+        }
 
         .btn-cta {
             background: var(--accent-color);
             color: #000;
-            padding: 18px 40px;
+            padding: 16px 35px;
             text-decoration: none;
             font-weight: 900;
             border-radius: 4px;
             display: inline-block;
         }
 
-        .hero-image {
-            height: 500px;
-            background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80') center/cover;
-            filter: grayscale(1);
-            border-radius: 20px;
-        }
-
-        /* --- SECTIONS (Espacement équilibré) --- */
-        section { 
-            padding: 100px 0; /* Espace avant et après chaque section */
-        }
-
+        /* --- SECTIONS (Centrage & Espacement) --- */
+        section { padding: 80px 0; text-align: center; }
         .section-title {
-            font-size: 2.8rem;
+            font-size: clamp(2rem, 4vw, 2.8rem);
             font-weight: 900;
             text-transform: uppercase;
-            margin-bottom: 70px; /* Espace entre le titre et le contenu du bloc */
-            text-align: center;
-            letter-spacing: -1px;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
         }
         .section-title span { color: var(--accent-color); }
 
         /* --- RÉALISATIONS --- */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            justify-content: center;
         }
         .project-card {
             background: var(--card-bg);
@@ -119,42 +138,32 @@
             aspect-ratio: 1 / 1;
         }
         .project-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(1);
-            transition: 0.5s;
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(1); transition: 0.5s;
         }
-        .project-card:hover img { filter: grayscale(0); transform: scale(1.08); }
+        .project-card:hover img { filter: grayscale(0); transform: scale(1.05); }
 
         /* --- TESTIMONIALS --- */
         .testi-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            justify-content: center;
         }
         .testi-card {
             background: var(--card-bg);
-            padding: 50px;
+            padding: 40px;
             border-radius: 15px;
+            text-align: left;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border-bottom: 4px solid transparent;
-            transition: 0.3s;
         }
-        .testi-card:hover { border-bottom: 4px solid var(--accent-color); }
-        .testi-card p {
-            font-size: 1rem;
-            color: #ddd;
-            margin-bottom: 30px;
-            font-style: italic;
-        }
-        .testi-author h4 { color: var(--accent-color); text-transform: uppercase; margin-bottom: 5px; }
-        .testi-author a { color: var(--text-gray); font-size: 0.85rem; text-decoration: none; }
+        .testi-card p { font-size: 0.95rem; color: #ddd; margin-bottom: 25px; font-style: italic; }
+        .testi-author h4 { color: var(--accent-color); text-transform: uppercase; margin-size: 0.9rem; }
+        .testi-author a { color: var(--text-gray); font-size: 0.8rem; text-decoration: none; }
 
-        /* --- CONTACT / FORM (Ajusté pour éviter scroll) --- */
-        .contact { background-color: #000; }
+        /* --- CONTACT / FORM --- */
         .form-wrapper {
             max-width: 850px;
             margin: 0 auto;
@@ -164,23 +173,39 @@
             filter: invert(90%) hue-rotate(180deg) brightness(1.1); 
             overflow: hidden;
         }
-        /* Hauteur augmentée pour accommoder le nouveau champ */
         iframe { width: 100%; height: 1050px; border: none; }
 
         footer {
-            padding: 80px 0;
+            padding: 60px 0;
             text-align: center;
             border-top: 1px solid #222;
-            color: #444;
+            color: #555;
             font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
-        @media (max-width: 900px) {
-            .hero, .testi-grid, .portfolio-grid { grid-template-columns: 1fr; }
-            .hero-text h1 { font-size: 3.5rem; }
-            iframe { height: 1300px; } /* Encore plus haut sur mobile car les champs s'empilent */
+        /* --- MEDIA QUERIES --- */
+        @media (max-width: 992px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 40px; }
+            .hero-text { order: 2; }
+            .hero-image { order: 1; height: 350px; width: 100%; }
+            .hero-text p { margin: 0 auto 35px; }
+            
+            /* Responsive Menu */
+            .burger { display: block; }
+            nav ul {
+                position: fixed;
+                right: -100%;
+                top: 75px;
+                height: calc(100vh - 75px);
+                background-color: var(--bg-color);
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                transition: 0.5s;
+                padding-top: 50px;
+                z-index: 2500;
+            }
+            nav ul.nav-active { right: 0; }
         }
     </style>
 </head>
@@ -190,76 +215,97 @@
         <div class="container nav-wrapper">
             <div class="logo">DIGITAL<span>HIGHT</span></div>
             <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
+                <ul id="nav-links">
+                    <li><a href="#">Accueil</a></li>
                     <li><a href="#projects">Réalisations</a></li>
                     <li><a href="#testimonials">Témoignages</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+            <div class="burger" id="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </div>
     </header>
 
-    <section class="container hero">
-        <div class="hero-text">
-            <h1>INSPIRING<br><span>CREATING</span><br>DIGITALLY</h1>
-            <p>Agence Web & IA : Nous concevons des écosystèmes numériques intelligents pour propulser votre croissance.</p>
-            <a href="#contact" class="btn-cta">DÉMARRER L'AVENTURE →</a>
-        </div>
-        <div class="hero-image"></div>
-    </section>
+    <main>
+        <section class="container hero">
+            <div class="hero-text">
+                <h1>INSPIRING<br><span>CREATING</span><br>DIGITALLY</h1>
+                <p>Nous concevons des solutions Web et IA sur mesure pour transformer votre présence digitale en véritable levier de croissance.</p>
+                <a href="#contact" class="btn-cta">DISCUTONS DE VOTRE PROJET</a>
+            </div>
+            <div class="hero-image"></div>
+        </section>
 
-    <section id="projects" class="container">
-        <h2 class="section-title">Nos <span>Réalisations</span></h2>
-        <div class="portfolio-grid">
-            <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Autograph-300x300.jpg" alt="Autograph"></div>
-            <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/FZ-Mchirah-300x300.jpg" alt="FZ Mchirah"></div>
-            <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Ilhamagination-1-300x300.jpg" alt="Ilhamagination"></div>
-            <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Salon-Rosell-300x300.jpg" alt="Salon Rosell"></div>
-        </div>
-    </section>
+        <section id="projects" class="container">
+            <h2 class="section-title">Nos <span>Réalisations</span></h2>
+            <div class="portfolio-grid">
+                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Autograph-300x300.jpg" alt="Autograph"></div>
+                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/FZ-Mchirah-300x300.jpg" alt="FZ Mchirah"></div>
+                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Ilhamagination-1-300x300.jpg" alt="Ilhamagination"></div>
+                <div class="project-card"><img src="https://www.lemondefeminin.com/wp-content/uploads/2025/11/Salon-Rosell-300x300.jpg" alt="Salon Rosell"></div>
+            </div>
+        </section>
 
-    <section id="testimonials" class="container">
-        <h2 class="section-title">Témoignages <span>Clients</span></h2>
-        <div class="testi-grid">
-            
-            <div class="testi-card">
-                <p>
-                    "Le gérant en personne m’a accompagné tout au long de la promotion de mon roman. Patient malgré mes différents réajustements, le résultat est impeccable. Le travail final dépasse mes attentes."
-                </p>
-                <div class="testi-author">
-                    <h4>Fatima Ezzohra Mchirah</h4>
-                    <a href="https://fzmchirah.com/" target="_blank">fzmchirah.com</a>
+        <section id="testimonials" class="container">
+            <h2 class="section-title">Paroles de <span>Clients</span></h2>
+            <div class="testi-grid">
+                <div class="testi-card">
+                    <p>"Le gérant en personne m’a accompagné tout au long de la promotion de mon roman. Patient malgré mes différents réajustements, le résultat est impeccable."</p>
+                    <div class="testi-author">
+                        <h4>Fatima Ezzohra Mchirah</h4>
+                        <a href="https://fzmchirah.com/" target="_blank">fzmchirah.com</a>
+                    </div>
+                </div>
+                <div class="testi-card">
+                    <p>"Aziz a su comprendre immédiatement l’univers que je voulais créer. C’est un partenaire de confiance, à l’écoute et toujours disponible."</p>
+                    <div class="testi-author">
+                        <h4>Ilham Ait Omar</h4>
+                        <a href="https://www.ilhamagination.com" target="_blank">ilhamagination.com</a>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="testi-card">
-                <p>
-                    "Aziz a su comprendre immédiatement l’univers que je voulais créer. C’est un partenaire de confiance, à l’écoute et toujours disponible. Mon site reflète parfaitement mes valeurs."
-                </p>
-                <div class="testi-author">
-                    <h4>Ilham Ait Omar</h4>
-                    <a href="https://www.ilhamagination.com" target="_blank">ilhamagination.com</a>
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Réserver <span>Un Appel</span></h2>
+                <div class="form-wrapper">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfNZKQ2VMT-yWbO4nYfr2_gkr6EyAu3mxWHwfpGfSYW-5zMJA/viewform?embedded=true">Chargement…</iframe>
                 </div>
             </div>
-
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Réserver <span>Un Appel</span></h2>
-            <div class="form-wrapper">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfNZKQ2VMT-yWbO4nYfr2_gkr6EyAu3mxWHwfpGfSYW-5zMJA/viewform?embedded=true">Chargement…</iframe>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
-            &copy; 2026 DIGITALHIGHT | STRATÉGIE DIGITALE & IA
+            &copy; 2026 DIGITALHIGHT | Agence Web & IA
         </div>
     </footer>
+
+    <script>
+        // Gestion du menu mobile (Burger)
+        const burger = document.getElementById('burger');
+        const nav = document.getElementById('nav-links');
+        const navItems = document.querySelectorAll('#nav-links li');
+
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+            
+            // Animation du burger
+            burger.classList.toggle('toggle');
+        });
+
+        // Fermer le menu quand on clique sur un lien
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                nav.classList.remove('nav-active');
+            });
+        });
+    </script>
 
 </body>
 </html>
